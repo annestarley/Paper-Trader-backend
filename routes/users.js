@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const ctrl = require('../controller/users.js')
 
-app.post('/login', ctrl.getPassword);
+app.post('/login', ctrl.getPassword, ctrl.controllerPostLogin);
 //add a new user TODO: test this
 app.post('/newUser', ctrl.controllerPostNewUser);
 //return the users current funds

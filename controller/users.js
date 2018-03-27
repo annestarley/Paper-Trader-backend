@@ -37,7 +37,7 @@ const getPassword = (req,res,next)=>{
     res.status(400).send('failed login?  try entering stuff')
   }
   model.getPassword(un, pw).then(x=>{
-    controllerPostLogin(req, res, x)
+    next(req, res, x)
   })
 }
 
