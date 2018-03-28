@@ -15,18 +15,28 @@ function compare(plainTextPassword, digest) {
   return bcrypt.compareSync(plainTextPassword, digest)
 }
 
-const addNewUser = (un, pw)=>{
+const addNewUser = (un, pw, em)=>{
+  if(!un || !pw || !em)
+  {
+    return false;
+  }
   return knex('users')
-  .insert({username: un, password: pw});
+  .insert({username: un, password: hash(pw, saltRounds), email: em});
 }
 
-const getPassword = (username, password)=> {
+const getPassword = (un, password)=> {
   return knex('users')
     .select('password')
     .first()
-    .where({username:username})
+    .where({username:un})
   }
 
+const getUserID = (un)=>{
+  return knex('users')
+    .select('id')
+    .first()
+    .where({username:un})
+}
 
 const verifyPassword = (passwordRaw, passwordHash) => {
   if(passwordHash===undefined)
@@ -44,4 +54,4 @@ const verifyPassword = (passwordRaw, passwordHash) => {
 }
 
 
-module.exports = {addNewUser, getPassword, verifyPassword}
+module.exports = {addNewUser, getPassword, verifyPassword, getUserID}
