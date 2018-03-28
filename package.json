@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/annestarley/Paper-Trader-backend#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.0",
