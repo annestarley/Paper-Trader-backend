@@ -45,12 +45,13 @@ const postTrade = (req, res) => {
 //no error checking, please dont pass me something with spaces.
 const finder = (req, res) => {
   axios.get('http://autoc.finance.yahoo.com/autoc?query='+req.body.symbol+'&region=1&lang=en')
-  .then(x=>{return res.status(200).send(x)}
+  .then(x=>{return res.status(200).send(x)})
 }
 
 module.exports = {
   getWatching,
   getTrades,
   getStock,
-  postTrade
+  postTrade,
+  finder
 }
