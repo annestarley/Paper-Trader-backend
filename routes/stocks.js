@@ -7,6 +7,6 @@ app.get('/watching', token, controller.getWatching)
 app.get('/trades', token, controller.getTrades)
 app.get('/:stockSymbol', token, controller.getStock)
 app.post('/:stockSymbol/trade', token, controller.postTrade)
-app.get('/symbol/:symbol', controller.finder)
+app.post('/find', controller.finder)
 
 module.exports = app;
