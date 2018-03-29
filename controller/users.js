@@ -13,7 +13,7 @@ const postLogin = (req,res) =>{
                   sub: {id: uid},
                   exp: Math.floor(Date.now() / 1000) + (60 * 1)
                 };
-      const token = jwt.signAsync(payload, 'shhhhh');
+      const token = jwt.sign(payload, 'shhhhh');
       //jwt.signAsync(payload, process.env.TOKEN_SECRET).then(token=>{
         return res.status(200).set('Auth', `Bearer: ${token}`).send('password correct, JWT set in Auth header');
       //});
