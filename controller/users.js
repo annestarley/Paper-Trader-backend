@@ -2,27 +2,26 @@ const jwt = require('jsonwebtoken');
 const model = require('../models/users.js')
 
 const postLogin = (req,res) =>{
-  let loggedIn= model.verifyPassword(req.body.password, req.body.hashedPw)
-
+  let loggedIn= model.verifyPassword(req.body.password, req.body.hashedPw.toString())
   if(loggedIn)
   {
+    console.log('logged in?')
     //positive response, logged in
     model.getUserID(req.body.username).then( uid=>{
-
-      console.log(token)
       let payload = {
                   loggedIn: true,
                   sub: {id: uid},
                   exp: Math.floor(Date.now() / 1000) + (60 * 1)
                 };
-      const token = jwt.sign(payload, 'shhhhh');
-      jwt.jwtSignAsync(payload, process.env.TOKEN_SECRET).then(token=>{
+      const token = jwt.signAsync(payload, 'shhhhh');
+      //jwt.signAsync(payload, process.env.TOKEN_SECRET).then(token=>{
         return res.status(200).set('Auth', `Bearer: ${token}`).send('password correct, JWT set in Auth header');
-      });
+      //});
     });
     //generate and send a token here instead of this test response
   }
   else {
+    console.log('not logged in')
     res.status(400).send("login failed")
   }
 }
@@ -57,8 +56,8 @@ const getPassword = (req,res,next)=>{
     res.status(400).send('failed login?  try entering stuff')
   }
   model.getPassword(un, pw).then(x=>{
-    req.body.hashedPw=x;
-    next(req, res)
+    req.body.hashedPw=x.password;
+    next()
   })
 }
 

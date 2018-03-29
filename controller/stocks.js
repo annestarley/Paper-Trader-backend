@@ -46,9 +46,14 @@ const postTrade = (req, res) => {
 const finder = (req, res) => {
   let searchString = 'http://autoc.finance.yahoo.com/autoc?query='+req.params.symbol+'&region=1&lang=en';
   console.log(searchString);
-  return axios.get(searchString)
-    .then(x=>{return res.status(200).send(x)})
-    .catch(err=>{return res.status(400).send('an error occured',err)})
+  return axios.get(searchString
+    )
+    .then(x=>{
+      return res.status(200).send(x.data.ResultSet.Result)}
+    )
+    .catch(err=>{
+console.log(err);
+      return res.status(400).send(err)})
 }
 
 module.exports = {
