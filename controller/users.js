@@ -15,7 +15,8 @@ const postLogin = (req,res) =>{
                 };
       const token = jwt.sign(payload, 'shhhhh');
       //jwt.signAsync(payload, process.env.TOKEN_SECRET).then(token=>{
-        return res.status(200).set('Auth', `Bearer: ${token}`).send('password correct, JWT set in Auth header');
+      return res.status(200).set('Auth', `Bearer: ${token}`).send('password correct, JWT set in Auth header');
+
       //});
     });
     //generate and send a token here instead of this test response
