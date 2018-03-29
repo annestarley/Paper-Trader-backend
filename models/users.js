@@ -21,7 +21,7 @@ const addNewUser = (un, pw, em)=>{
     return false;
   }
   return knex('users')
-  .insert({username: un, password: hash(pw, saltRounds), email: em});
+  .insert({username: un, password: hash(pw, saltRounds), email: em, funds: 50000});
 }
 
 const getPassword = (un, password)=> {

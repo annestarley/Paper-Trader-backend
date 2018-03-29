@@ -44,8 +44,11 @@ const postTrade = (req, res) => {
 
 //no error checking, please dont pass me something with spaces.
 const finder = (req, res) => {
-  axios.get('http://autoc.finance.yahoo.com/autoc?query='+req.body.symbol+'&region=1&lang=en')
-  .then(x=>{return res.status(200).send(x)})
+  let searchString = 'http://autoc.finance.yahoo.com/autoc?query='+req.params.symbol+'&region=1&lang=en';
+  console.log(searchString);
+  return axios.get(searchString)
+    .then(x=>{return res.status(200).send(x)})
+    .catch(err=>{return res.status(400).send('an error occured',err)})
 }
 
 module.exports = {
