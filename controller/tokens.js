@@ -2,6 +2,11 @@ const model = require('../models/users.js');
 const jwt = require('jsonwebtoken');
 
 const tokenVerify = (req, res, next)=>{
+  req.uid=1;//TODO FIX
+  console.log(x);
+  next(req,res);
+
+
     let auth= req.headers.auth;
     if(!auth)
     {
@@ -11,6 +16,7 @@ const tokenVerify = (req, res, next)=>{
       auth = auth.split(' ')[1]
       jwt.VerifyAsync(auth, process.env.TOKEN_SECRET)
       .then(x=>{
+        req.uid=1;//TODO FIX
         console.log(x);
         next(req,res);
       })

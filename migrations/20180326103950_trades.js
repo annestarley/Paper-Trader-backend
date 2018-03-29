@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('trades', table => {
     table.increments()
-    table.string('uid').notNullable()
+    table.integer('uid').notNullable()
     table.string('symbol').notNullable()
     table.integer('value').notNullable()
     table.integer('amount').notNullable()
