@@ -7,12 +7,19 @@ const config = require('./knexfile')[env];
 const knex = require('knex')(config);
 const cors = require('cors')
 
+const path = require('path')
+//app.use(express.static(path.join(__dirname, './build')))
+
 app.disable('x-powered-by');
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use(bodyParser.json());
-app.use(cors({ exposedHeaders: 'Auth' }))
+app.get('/test', (req, res) => {
+  console.log(req.headers)
+  res.json({})
+})
+app.use(cors({ exposedHeaders: 'Auth'}))//, allowedHeaders: '*'
 //
 // app.use(function(req, res, next) {
 //    res.header("Access-Control-Allow-Origin", "*");
