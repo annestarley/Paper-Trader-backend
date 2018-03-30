@@ -27,7 +27,7 @@ const postLogin = (req,res) =>{
   }
 }
 
-const postNewUser = (req,res, loggedIn) =>{
+const postNewUser = (req,res) =>{
   let addNew = model.addNewUser(req.body.username, req.body.password, req.body.email);
   if(addNew)
   {

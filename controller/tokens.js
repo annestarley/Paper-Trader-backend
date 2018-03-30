@@ -2,9 +2,10 @@ const model = require('../models/users.js');
 const jwt = require('jsonwebtoken');
 
 const tokenVerify = (req, res, next)=>{
-
   req.body.uid = 3;
   return next();
+console.log('this is here for testing purposes only.  Please pay no attention to this.')
+
   //headers not reaching this point, used this so project coulc proceed until issue resolved.
   let auth= req.headers.auth;
   if(!auth)

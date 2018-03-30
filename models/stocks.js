@@ -58,8 +58,8 @@ const postTrade = (userID,_symbol,_amount,_value, res) =>{
 }
 
 module.exports = {
+  postTrade,
   getWatching,
   getTrades,
-  getStocks,
-  postTrade
+  getStocks
 }
