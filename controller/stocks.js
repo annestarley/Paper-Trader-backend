@@ -39,7 +39,7 @@ model.getStocks(req.params.stockSymbol, req.body.uid)
 
 //POST
 const postTrade = (req, res) => {
-  model.postTrade(req.body.uid, req.body.symbol, req.body.amount, req.body.price, res);
+  model.postTrade(req.body.uid, req.params.stockSymbol, req.body.amount, req.body.price, res);
 }
 
 //no error checking, please dont pass me something with spaces.
