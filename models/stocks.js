@@ -17,7 +17,7 @@ const getStocks = (stockSymbol, id) => {
     .where({symbol: stockSymbol, uid: id})
 }
 
-const postTrade = (userID,change,_symbol,_amount,_value, res) =>{
+const postTrade = (userID,_symbol,_amount,_value, res) =>{
   knex('users')
   .select('funds')
   .where({id:userID})
@@ -25,6 +25,7 @@ const postTrade = (userID,change,_symbol,_amount,_value, res) =>{
   .then(result=>{
     console.log('result');
     console.log(result);
+    let change = _amount*_value;
     if(result.funds-change>0)
     {
 
