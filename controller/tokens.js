@@ -2,9 +2,9 @@ const model = require('../models/users.js');
 const jwt = require('jsonwebtoken');
 
 const tokenVerify = (req, res, next)=>{
-  req.body.uid = 1;
-  return next(req,res);
 
+  req.body.uid = 3;
+  return next();
   //headers not reaching this point, used this so project coulc proceed until issue resolved.
   let auth= req.headers.auth;
   if(!auth)
