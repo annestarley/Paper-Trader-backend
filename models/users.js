@@ -53,5 +53,12 @@ const verifyPassword = (passwordRaw, passwordHash) => {
   //console.log(typeof(bcrypt.hashSync('test')))
 }
 
+getFunds=(uid)=>{
+  return knex('users')
+    .select('funds')
+    .first()
+    .where({id:uid})
+}
 
-module.exports = {addNewUser, getPassword, verifyPassword, getUserID}
+
+module.exports = {addNewUser, getPassword, verifyPassword, getUserID,getFunds}

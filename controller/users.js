@@ -41,11 +41,11 @@ const postNewUser = (req,res, loggedIn) =>{
 }
 
 const getFunds = (req, res) =>{
-  model.MGFunds(getUserId(req.params.token), res);
+  model.getFunds(req.body.uid).then(x=>{return res.status(200).send(x)}).catch(x=>{return res.status(400).send('account fund access failed')});
 }
 
 const getUserId = (token) =>{
-  return loggedInUsers.filter(x=>x.token == token)[0].userID;
+  return req.body.uid;
 }
 
 //gets and passes the hashed password to the next
