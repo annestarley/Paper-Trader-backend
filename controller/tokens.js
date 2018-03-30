@@ -2,12 +2,13 @@ const model = require('../models/users.js');
 const jwt = require('jsonwebtoken');
 
 const tokenVerify = (req, res, next)=>{
-  console.log(req.headers);
+//   console.log(req.headers);
   req.body.uid = 3;
   return next();
-console.log('this is here for testing purposes only.  Please pay no attention to this.')
+  console.log('this is here for testing purposes only.  Please pay no attention to this.')
 
   //headers not reaching this point, used this so project coulc proceed until issue resolved.
+  debugger
   let auth= req.headers.auth;
   if(!auth)
   {
@@ -17,11 +18,12 @@ console.log('this is here for testing purposes only.  Please pay no attention to
   else {
     auth = auth.split(' ')[1]
     let x= jwt.Verify(auth, 'shhhhh')
+    console.log(x);
       if(x)
       {
         return next(req,res);
       }
-      console.log(x);
+
       res.status(403).send(`there was an error`);
   }
 }

@@ -30,17 +30,19 @@ const postTrade = (userID,_symbol,_amount,_value, res) =>{
     {
 
       amtToMod = result.funds;
-      knex('trades')
-      .insert({
+      let temp={
         uid:userID,
         symbol:_symbol,
         amount:_amount,
         value:_value
         //,tradeTime:'NOW()'
-      })
+      }
+      console.log(temp)
+      knex('trades')
+      .insert(temp)
       .then(results=>{
-        console.log('change')
-        console.log(change)
+        console.log('results of trades')
+        console.log(results)
         knex('users')
         .first()
         .where({id:userID})
